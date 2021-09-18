@@ -1,5 +1,5 @@
 # Coord-Programming-Language
-Coord (Just a Random Name) is a Bilingual Programming Language, which support English &amp; Sinhala. It's the First ever built Sinhala Programming Language as well. Made for Fun, if you like please try to contribute :)
+Coord (Just a Random Name) is a Bilingual Programming Language, which support English &amp; Sinhala. It's the First ever built Sinhala Programming Language as well. Made for Fun, if you like this, make sure to star the project and please try to contribute :)
 
 ## How to Run
 
