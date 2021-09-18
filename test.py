@@ -23,9 +23,19 @@ def run(fn, text):
   return result.value, result.error
 
 
+f = open('_printed_', 'w')
+f.close()
 
 text = """
 #paste your code here and run this file.
+for i=0 to 10 then
+	write(i)
+end
+
+මෙහි i=10 සිට​ 20 තෙක්
+	ලියන්න(i)
+අවසන්
+
 """
 result, error = run('<stdin>', text)
 
@@ -36,3 +46,5 @@ elif result:
 		print(repr(result.elements[0]))
 else:
 	print(repr(result))
+
+print("Check `_printed_` file for printed info")

@@ -1,5 +1,2 @@
-විචල්‍ය​ x = 1
-මෙහි x < 20 අතරතුර​
-       ලියන්න(x)
-       විචල්‍ය​ x = x + 2
-අවසන්
+var x = input("Enter Something: ")
+write(x)

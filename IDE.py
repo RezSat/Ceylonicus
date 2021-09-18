@@ -4,6 +4,9 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from main import Execute
 import os
+from lexer import Lexer
+from _parser import Parser
+from interpreter import Interpreter, Context, global_symbol_table
 
 class Ui_MainWindow(object):
 
@@ -106,6 +109,24 @@ class Ui_MainWindow(object):
         self.run.setText(_translate("MainWindow", "RUN"))
         self.font_size.setText(_translate("MainWindow", "Font Size"))
 
+    def runCoord(self, fn, text):
+        lexer = Lexer(fn, text)
+        tokens, error = lexer.create_tokens()
+        if error: return None, error
+
+        # Generate AST
+        parser = Parser(tokens)
+        ast = parser.parse()
+        if ast.error: return None, ast.error
+
+        # Run program
+        interpreter = Interpreter()
+        context = Context('<program>')
+        context.symbol_table = global_symbol_table
+        result = interpreter.visit(ast.node, context)
+
+        return result.value, result.error 
+
     def code_run(self):
         _printed_ = open('_printed_','w')
         _printed_.close()
@@ -113,7 +134,22 @@ class Ui_MainWindow(object):
         with open('somefile', 'w', encoding='utf-8') as f:
             f.write(text)
             f.close()
-        os.system('py shell.py')
+
+        f = open('_printed_', 'w')
+        f.close()
+        text = open('somefile', 'r', encoding='utf-8').read()
+        if u'﻿' in text:
+          text = text.replace(u'﻿', "")
+        result, error = self.runCoord('<stdin>', text)
+
+        if error:
+            print(error.as_string())
+        elif result:
+            if len(result.elements) == 1:
+                print(repr(result.elements[0]))
+        else:
+            print(repr(result))  
+                  
         _printed_ = open('_printed_','r',encoding='utf-8').read()
         self.result.setPlainText(_printed_.encode("utf8").decode(sys.stdout.encoding))
 
