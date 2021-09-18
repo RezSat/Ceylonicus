@@ -1,0 +1,35 @@
+
+# English
+
+var x = 10
+var text = "Hello, World 123"
+var add = 1+10
+var sub = 10 -7
+var div = 10/2
+var mul = 2*6
+var pow = 8^2
+write(x)
+write(text)
+write(add)
+write(sub)
+write(div)
+write(mul)
+write(pow)
+
+# Sinhala
+
+var අංකයක් = 10
+var වචන = "Hello, World 123"
+var එකතුව = 1+10
+var අඩු = 10 -7
+var බෙදිම = 10/2
+var වඩි = 2*6
+var බලය = 8^2
+
+ලියන්න(අංකයක්)
+ලියන්න(වචන)
+ලියන්න(එකතුව)
+ලියන්න(අඩු)
+ලියන්න(බෙදිම)
+ලියන්න(වඩි)
+ලියන්න(බලය)
