@@ -14,7 +14,7 @@ Simple, Just use the executable from the latest release. (Works only on Windows 
 
 ## I'm Working On:
 ```
-[+] Make a Good UI
-[+] Make it work on Windows/Linux/Mac without python installed (an executable).
+[+] Make a Good UI with more functions
+[+] Make it work on Linux/Mac without (as an direct executable).
 [+] A Good Documentation
 ```
