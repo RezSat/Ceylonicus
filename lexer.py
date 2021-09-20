@@ -14,6 +14,21 @@ except:
 #######################################
 
 class Position:
+  """ 
+  Position Class: As a Helper Class
+  ______________________
+
+  Use to get, copy the Position of a Character/Current Character,
+  idx -> index
+  ln -> line number,
+  col -> column number
+  fn -> filename, 
+  ftxt -> file text /file content,
+
+  advance() -> Go to next Character/Position
+  copy() -> keep a record of the character position
+
+  """
   def __init__(self, idx, ln, col, fn, ftxt):
     self.idx = idx
     self.ln = ln
@@ -35,6 +50,16 @@ class Position:
     return Position(self.idx, self.ln, self.col, self.fn, self.ftxt)
 
 class Token:
+  """
+  Token Class
+  ___________
+
+  Keep a record of Token type->type_, value, start position->pos_start, end position->pos_end
+
+  matches() -> match Token type to value and wise versa
+  __repr__ -> if there is a Token Value : 'TOKEN_TYPE:TOKEN_VALUE' otherwise 'TOKEN_TYPE'
+
+  """
   def __init__(self, type_, value=None, pos_start=None, pos_end=None):
     self.type = type_
     self.value = value
@@ -59,6 +84,21 @@ class Token:
 #######################################
 
 class Lexer:
+  """
+  Lexer Class
+  ___________
+
+  create_tokens()->make a list of tokens. RETURN : LIST[TOKENS]
+  create_number()->make floats and integers. RETURN : FLOAT | INTEGER
+  create_string()->make strings that are between double quotes. RETURN : STRING
+  create_identifier()->make identifier or reserved keyword. RETURN : IDENTIFIER | KEYWORD
+  create_minus_or_arrow()->make minus symbol or arrow symbol. RETURN : MINUS | ARROW
+  create_not_equals()->make not equals symbol. RETURN : NOTEQ
+  create_less_than()->make less than symbol. RETURN : LESSTHAN | LTEQ
+  create_greater_than()->make greater than  symbol. RETURN : GREATERTHAN | GTEQ
+  create_equals()->make equal and equal euqal  symbol. RETURN : EQ | EQEQ
+  skip_comment()-> Skip Comment : Commet starts with '#'
+  """
   def __init__(self, fn, text):
     self.fn = fn
     self.text = text
@@ -81,11 +121,13 @@ class Lexer:
       elif self.current_char in ';\n':
         tokens.append(Token(Tokens['NEWLINE'], pos_start=self.pos))
         self.advance()
-      elif self.current_char in DIGITS:
+      elif self.current_char in re.findall(DIGITS, self.current_char) + ['.']:
         tokens.append(self.create_number())
       elif self.current_char in re.findall(CHARACTERS, self.current_char):
         tokens.append(self.create_identifier())
       elif self.current_char == '"':
+        tokens.append(self.create_string())
+      elif self.current_char == "'":
         tokens.append(self.create_string())
       elif self.current_char == '+':
         tokens.append(Token(Tokens['PLUS'], pos_start=self.pos))
@@ -140,7 +182,8 @@ class Lexer:
     dot_count = 0
     pos_start = self.pos.copy()
 
-    while self.current_char != None and self.current_char in DIGITS + '.':
+
+    while self.current_char != None and self.current_char in re.findall(DIGITS, self.current_char) + ['.']:
       if self.current_char == '.':
         if dot_count == 1: break
         dot_count += 1
@@ -173,7 +216,7 @@ class Lexer:
           string += self.current_char
       self.advance()
       escape_character = False
-    
+
     self.advance()
     return Token(Tokens['STRING'], string, pos_start, self.pos)
 

@@ -28,14 +28,9 @@ f.close()
 
 text = """
 #paste your code here and run this file.
-for i=0 to 10 then
-	write(i)
-end
-
-මෙහි i=10 සිට​ 20 තෙක්
-	ලියන්න(i)
-අවසන්
-
+var x = 1 + .2
+write(x)
+write("Hello\nhi")
 """
 result, error = run('<stdin>', text)
 

@@ -1,4 +1,5 @@
-DIGITS = '0123456789'
+DIGITS = r"\.*\d+\.*"
+CHARACTERS = r'[\u200d\u200b\u0D80-\u0DFFa-zA-Z0-9_]+'
 
 Tokens = {
 	
@@ -53,6 +54,8 @@ KEYWORDS = [
   'continue',
   'break',
   'do',
+  'import',
+  'from'
 
 #Sinhala
   'විචල්ය', # variable
@@ -108,7 +111,7 @@ BuiltIns = {
 	"run":['ක්‍රියාත්මක_කරන්න'],
 
 }
-CHARACTERS = r'[\u200d\u200b\u0D80-\u0DFFa-zA-Z0-9_]+'
+
 #CHARACTERS = r'[\u0000-\uFFFFa-zA-Z0-9_]+'
 
 #u200d & u200b are zero-width space
