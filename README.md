@@ -18,6 +18,6 @@ Simple, Just use the executable from the latest release. (Works only on Windows 
 ## I'm Working On:
 ```
 [+] Make a Good UI with more functions
-[+] Make it work on Linux/Mac without (as an direct executable).
+[+] Make it work on Linux/Mac without python (as an direct executable).
 [+] A Good Documentation
 ```
