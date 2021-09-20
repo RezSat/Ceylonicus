@@ -1,9 +1,7 @@
-# Coord-Programming-Language
+# Ceylonicus-Programming-Language
 <p align="center">
     <img width="1200px" src="https://github.com/RezSat/Ceylonicus/blob/gh-pages/assets/images/logo-1200x268.png"><br/>
   </a>
-
-  <h2 align="center">Ceylonicus</h2>
 </p>
 
 ## How to Run
