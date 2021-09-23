@@ -1,2 +1,0 @@
-var x = input("Enter Something: ")
-write(x)

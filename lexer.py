@@ -2,11 +2,9 @@ import re
 import string
 try:
   from errors import IllegalCharError, InvalidSyntaxError, ExpectedCharError, RTError
-  from strings_with_arrows import *
   from tokens import Tokens, KEYWORDS, DIGITS, CHARACTERS, BuiltIns
 except:
   from .errors import IllegalCharError, InvalidSyntaxError, ExpectedCharError, RTError
-  from .strings_with_arrows import *
   from .tokens import Tokens, KEYWORDS, DIGITS, CHARACTERS, BuiltIns
 
 #######################################
@@ -206,7 +204,7 @@ class Lexer:
       't': '\t'
     }
 
-    while self.current_char != None and (self.current_char != '"' or escape_character):
+    while self.current_char != None and self.current_char != '"' and self.current_char != "'" and self.current_char != escape_character:
       if escape_character:
         string += escape_characters.get(self.current_char, self.current_char)
       else:

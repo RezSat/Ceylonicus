@@ -1,0 +1,11 @@
+input()
+input("Enter Something: ")
+
+ආදානය()
+ආදානය("Enter Something:")
+
+int_input() # Only input integers
+සංඛ්‍යා_ආදානය()
+
+int_input("Enter Number:") # Only input integers
+සංඛ්‍යා_ආදානය("Enter Number:")

@@ -28,9 +28,8 @@ f.close()
 
 text = """
 #paste your code here and run this file.
-var x = 1 + .2
-write(x)
-write("Hello\nhi")
+
+int_input()
 """
 result, error = run('<stdin>', text)
 

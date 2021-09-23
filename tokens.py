@@ -54,8 +54,6 @@ KEYWORDS = [
   'continue',
   'break',
   'do',
-  'import',
-  'from'
 
 #Sinhala
   'විචල්ය', # variable
@@ -109,6 +107,7 @@ BuiltIns = {
 	"extend":['දිගු_කරන්න'],
 	"len":['දිග'], 
 	"run":['ක්‍රියාත්මක_කරන්න'],
+  "select": ['ලැයිස්තුවෙන්_තෝරන්න']
 
 }
 

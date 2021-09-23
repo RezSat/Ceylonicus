@@ -330,8 +330,16 @@ class BaseFunction(Value):
       arg_value.set_context(exec_ctx)
       exec_ctx.symbol_table.set(arg_name, arg_value)
 
+  def check_and_fix_default_args(self, arg_names, args):
+    if self.name == "input" and (len(args) < len(arg_names)):
+      args.append(String(""))
+
+    if self.name == "input_int" and (len(args) < len(arg_names)):
+      args.append(String(""))
+
   def check_and_populate_args(self, arg_names, args, exec_ctx):
     res = RTResult()
+    self.check_and_fix_default_args(arg_names, args)
     res.register(self.check_args(arg_names, args))
     if res.should_return(): return res
     self.populate_args(arg_names, args, exec_ctx)
@@ -415,6 +423,7 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(String(text))
   execute_input.arg_names = ['prompt']
 
+
   def execute_input_int(self, exec_ctx):
     while True:
       text = input(exec_ctx.symbol_table.get('prompt'))
@@ -495,6 +504,35 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(element)
   execute_pop.arg_names = ["list", "index"]
 
+  def execute_select(self, exec_ctx):
+    list_ = exec_ctx.symbol_table.get("list")
+    index = exec_ctx.symbol_table.get("index")
+
+    if not isinstance(list_, List):
+      return RTResult().failure(RTError(
+        self.pos_start, self.pos_end,
+        "First argument must be list",
+        exec_ctx
+      ))
+
+    if not isinstance(index, Number):
+      return RTResult().failure(RTError(
+        self.pos_start, self.pos_end,
+        "Second argument must be number",
+        exec_ctx
+      ))
+
+    try:
+      element = list_.elements[index.value]
+    except:
+      return RTResult().failure(RTError(
+        self.pos_start, self.pos_end,
+        'Element at this index could not be removed from list because index is out of bounds',
+        exec_ctx
+      ))
+    return RTResult().success(element)
+  execute_select.arg_names = ["list", "index"]
+
   def execute_extend(self, exec_ctx):
     listA = exec_ctx.symbol_table.get("listA")
     listB = exec_ctx.symbol_table.get("listB")
@@ -543,7 +581,7 @@ class BuiltInFunction(BaseFunction):
     fn = fn.value
 
     try:
-      with open(fn, "r") as f:
+      with open(fn, "r", encoding="utf-8") as f:
         script = f.read()
     except Exception as e:
       return RTResult().failure(RTError(
@@ -576,10 +614,10 @@ BuiltInFunction.is_list     = BuiltInFunction("is_list")
 BuiltInFunction.is_function = BuiltInFunction("is_function")
 BuiltInFunction.append      = BuiltInFunction("append")
 BuiltInFunction.pop         = BuiltInFunction("pop")
+BuiltInFunction.select      = BuiltInFunction("select")
 BuiltInFunction.extend      = BuiltInFunction("extend")
 BuiltInFunction.len					= BuiltInFunction("len")
 BuiltInFunction.run					= BuiltInFunction("run")
-
 #######################################
 # CONTEXT
 #######################################
@@ -848,7 +886,6 @@ class Interpreter:
 
   def visit_BreakNode(self, node, context):
     return RTResult().success_break()
-
 #######################################
 # RUN
 #######################################
@@ -870,6 +907,7 @@ global_symbol_table.set("is_list", BuiltInFunction.is_list)
 global_symbol_table.set("is_function", BuiltInFunction.is_function)
 global_symbol_table.set("append", BuiltInFunction.append)
 global_symbol_table.set("pop", BuiltInFunction.pop)
+global_symbol_table.set("select", BuiltInFunction.select)
 global_symbol_table.set("extend", BuiltInFunction.extend)
 global_symbol_table.set("len", BuiltInFunction.len)
 global_symbol_table.set("run", BuiltInFunction.run)
