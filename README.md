@@ -17,7 +17,16 @@ Simple, Just use the executable from the latest release. (Works only on Windows 
 
 ## I'm Working On:
 ```
-[+] Make a Good UI with more functions
+[+] A Brython implementation, so this can be run directly on the browser.
+[+] Make a Good IDE UI with more functions
 [+] Make it work on Linux/Mac without python (as an direct executable).
-[+] A Good Documentation
+[+] A Good Documentation for both contributions & learning.
 ```
+
+Learn more about [Brython](https://brython.info/) ...
+
+Thank you
+=========
+
+- [BrowserStack](http://www.browserstack.com) for providing an access
+to their online testing environment.
