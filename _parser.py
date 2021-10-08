@@ -4,7 +4,8 @@ try:
     NumberNode, 
     BinOpNode, 
     UnaryOpNode, 
-    StringNode, 
+    StringNode,
+    PythonCodeNode,
     ListNode, 
     VarAccessNode, 
     VarAssignNode, 
@@ -24,7 +25,9 @@ except:
     NumberNode, 
     BinOpNode, 
     UnaryOpNode, 
-    StringNode, ListNode, 
+    StringNode,
+    PythonCodeNode,
+    ListNode, 
     VarAccessNode, 
     VarAssignNode, 
     IfNode, 
@@ -336,6 +339,11 @@ class Parser:
       res.register_advancement()
       self.advance()
       return res.success(StringNode(tok))
+
+    elif tok.type == Tokens['PYTHON_CODE']:
+      res.register_advancement()
+      self.advance()
+      return res.success(PythonCodeNode(tok))
 
     elif tok.type == Tokens['ID']:
       res.register_advancement()

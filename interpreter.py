@@ -1,6 +1,7 @@
 import os
 import math
 import string
+import sys
 try:
   from symboltable import SymbolTable
   from runtime import RTResult
@@ -236,6 +237,33 @@ class String(Value):
   def __repr__(self):
     return f'"{self.value}"'
 
+class PythonCode(Value):
+  def __init__(self, value):
+    super().__init__()
+    self.value = value
+    exec(self.value)
+
+  def added_to(self, other):
+    if isinstance(other, PythonCode):
+      return PythonCode(self.value + other.value).set_context(self.context), None
+    else:
+      return None, Value.illegal_operation(self, other)
+
+  def is_true(self):
+    return len(self.value) > 0
+
+  def copy(self):
+    copy = PythonCode(self.value)
+    copy.set_pos(self.pos_start, self.pos_end)
+    copy.set_context(self.context)
+    return copy
+
+  def __str__(self):
+    return self.value
+
+  def __repr__(self):
+    return f'`{self.value}`'
+
 class List(Value):
   def __init__(self, elements):
     super().__init__()
@@ -408,6 +436,7 @@ class BuiltInFunction(BaseFunction):
   #####################################
 
   def execute_print(self, exec_ctx):
+    print(str(exec_ctx.symbol_table.get('value')).encode("utf8").decode(sys.stdout.encoding))
     f = open("_printed_",'a',encoding='utf8')
     print(str(exec_ctx.symbol_table.get('value')), file=f)
     f.close()
@@ -459,6 +488,33 @@ class BuiltInFunction(BaseFunction):
     is_number = isinstance(exec_ctx.symbol_table.get("value"), BaseFunction)
     return RTResult().success(Number.true if is_number else Number.false)
   execute_is_function.arg_names = ["value"]
+
+  def execute_to_string(self, exec_ctx):
+    result = String(str(exec_ctx.symbol_table.get("value")))
+    if not isinstance(result, String):
+      return RTResult().failure(RTError(
+        self.pos_start, self.pos_end,
+        "Couldn't convert to a string",
+        exec_ctx
+      ))
+    return RTResult().success(result)
+  execute_to_string.arg_names = ["value"]
+
+  def execute_to_number(self, exec_ctx):
+    if not (isinstance(exec_ctx.symbol_table.get("value"), String) or isinstance(exec_ctx.symbol_table.get("value"), Number)):
+      return RTResult().failure(RTError(
+        self.pos_start, self.pos_end,
+        "Couldn't convert to an integer",
+        exec_ctx
+      ))
+
+    result = Number(int(str(exec_ctx.symbol_table.get("value"))))
+    return RTResult().success(result)
+  execute_to_number.arg_names = ["value"]
+
+  def execute_type_(self, exec_ctx):
+    return RTResult().success(String(str(type(exec_ctx.symbol_table.get("value")))))
+  execute_type_.arg_names = ['value']
 
   def execute_append(self, exec_ctx):
     list_ = exec_ctx.symbol_table.get("list")
@@ -568,7 +624,7 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(Number(len(list_.elements)))
   execute_len.arg_names = ["list"]
 
-  def execute_run(self, exec_ctx):
+  def execute_import_(self, exec_ctx):
     fn = exec_ctx.symbol_table.get("fn")
 
     if not isinstance(fn, String):
@@ -586,11 +642,11 @@ class BuiltInFunction(BaseFunction):
     except Exception as e:
       return RTResult().failure(RTError(
         self.pos_start, self.pos_end,
-        f"Failed to load script \"{fn}\"\n" + str(e),
+        f"Failed to import script \"{fn}\"\n" + str(e),
         exec_ctx
       ))
 
-    _, error = run(fn, script)
+    _, error = _import(fn, script)
     
     if error:
       return RTResult().failure(RTError(
@@ -601,7 +657,7 @@ class BuiltInFunction(BaseFunction):
       ))
 
     return RTResult().success(Number.null)
-  execute_run.arg_names = ["fn"]
+  execute_import_.arg_names = ["fn"]
 
 BuiltInFunction.print       = BuiltInFunction("print")
 BuiltInFunction.print_ret   = BuiltInFunction("print_ret")
@@ -612,12 +668,15 @@ BuiltInFunction.is_number   = BuiltInFunction("is_number")
 BuiltInFunction.is_string   = BuiltInFunction("is_string")
 BuiltInFunction.is_list     = BuiltInFunction("is_list")
 BuiltInFunction.is_function = BuiltInFunction("is_function")
+BuiltInFunction.to_string   = BuiltInFunction("to_string")
+BuiltInFunction.to_number   = BuiltInFunction("to_number")
+BuiltInFunction.type_       = BuiltInFunction("type_")
 BuiltInFunction.append      = BuiltInFunction("append")
 BuiltInFunction.pop         = BuiltInFunction("pop")
 BuiltInFunction.select      = BuiltInFunction("select")
 BuiltInFunction.extend      = BuiltInFunction("extend")
 BuiltInFunction.len					= BuiltInFunction("len")
-BuiltInFunction.run					= BuiltInFunction("run")
+BuiltInFunction.import_		  = BuiltInFunction("import_")
 #######################################
 # CONTEXT
 #######################################
@@ -652,6 +711,11 @@ class Interpreter:
   def visit_StringNode(self, node, context):
     return RTResult().success(
       String(node.tok.value).set_context(context).set_pos(node.pos_start, node.pos_end)
+    )
+
+  def visit_PythonCodeNode(self, node, context):
+    return RTResult().success(
+      PythonCode(node.tok.value).set_context(context).set_pos(node.pos_start, node.pos_end)
     )
 
   def visit_ListNode(self, node, context):
@@ -905,14 +969,17 @@ global_symbol_table.set("is_num", BuiltInFunction.is_number)
 global_symbol_table.set("is_str", BuiltInFunction.is_string)
 global_symbol_table.set("is_list", BuiltInFunction.is_list)
 global_symbol_table.set("is_function", BuiltInFunction.is_function)
+global_symbol_table.set("to_str", BuiltInFunction.to_string)
+global_symbol_table.set("to_num", BuiltInFunction.to_number)
+global_symbol_table.set("type", BuiltInFunction.type_)
 global_symbol_table.set("append", BuiltInFunction.append)
 global_symbol_table.set("pop", BuiltInFunction.pop)
 global_symbol_table.set("select", BuiltInFunction.select)
 global_symbol_table.set("extend", BuiltInFunction.extend)
 global_symbol_table.set("len", BuiltInFunction.len)
-global_symbol_table.set("run", BuiltInFunction.run)
+global_symbol_table.set("import", BuiltInFunction.import_)
 
-def run(fn, text):
+def _import(fn, text):
   try:
     from lexer import Lexer
     from _parser import Parser

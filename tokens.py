@@ -29,8 +29,9 @@ Tokens = {
 	"LSQUARE": "LSQUARE : '['",
 	"RSQUARE": "RSQUARE : ']'",
 	"PLUSEQ": "PLUSEQ: '+='",
-	"MINUSEQ": "MINUSEQ: '-='"
-
+	"MINUSEQ": "MINUSEQ: '-='",
+	"ACCENT": "ACCENT: '`'",
+	"PYTHON_CODE": "PYTHON_CODE"
 	}
 
 KEYWORDS = [
@@ -102,11 +103,14 @@ BuiltIns = {
 	"is_str":['අක්ෂර_ද'],
 	"is_list":['ලැයිස්තුවක්_ද'], 
 	"is_function":['ශ්‍රිතයක්_ද'],
+	"to_str": ["අක්ෂර_බවට_පරිවර්තනය_කරන්න"],
+	"to_num":["අංක_බවට_පරිවර්තනය_කරන්න"],
+	"type": ["වර්ගය"],
 	"append":['අගට​_එකතු_කරන්න'],
 	"pop":['පොප්'], 
 	"extend":['දිගු_කරන්න'],
 	"len":['දිග'], 
-	"run":['ක්‍රියාත්මක_කරන්න'],
+	"import":['ආනයනය_කරන්න'],
   "select": ['ලැයිස්තුවෙන්_තෝරන්න']
 
 }

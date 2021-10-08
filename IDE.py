@@ -131,13 +131,13 @@ class Ui_MainWindow(object):
         _printed_ = open('_printed_','w')
         _printed_.close()
         text = self.code_input.document().toPlainText()
-        with open('somefile', 'w', encoding='utf-8') as f:
+        with open('_Ceylonicus-Script_', 'w', encoding='utf-8') as f:
             f.write(text)
             f.close()
 
         f = open('_printed_', 'w')
         f.close()
-        text = open('somefile', 'r', encoding='utf-8').read()
+        text = open('_Ceylonicus-Script_', 'r', encoding='utf-8').read()
         if u'﻿' in text:
           text = text.replace(u'﻿', "")
         result, error = self.runCoord('<stdin>', text)

@@ -29,7 +29,11 @@ f.close()
 text = """
 #paste your code here and run this file.
 
-int_input()
+ආනයනය_කරන්න("examples/write.cord")
+var x = "100"
+write(වර්ගය(x))
+write("කරන්න")
+
 """
 result, error = run('<stdin>', text)
 

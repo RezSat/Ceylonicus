@@ -1,0 +1,6 @@
+ලියන්න("THIS IS FROM SINHALA")
+write("THIS IS FROM ENGLISH")
+
+function hello(a) -> write("Hello "+a)
+
+function add(a,b) -> a + b 

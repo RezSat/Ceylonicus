@@ -22,6 +22,16 @@ class StringNode:
   def __repr__(self):
     return f'{self.tok}'
 
+class PythonCodeNode:
+  def __init__(self, tok):
+    self.tok = tok
+
+    self.pos_start = self.tok.pos_start
+    self.pos_end = self.tok.pos_end
+
+  def __repr__(self):
+    return f'{self.tok}'
+
 class ListNode:
   def __init__(self, element_nodes, pos_start, pos_end):
     self.element_nodes = element_nodes

@@ -127,6 +127,8 @@ class Lexer:
         tokens.append(self.create_string())
       elif self.current_char == "'":
         tokens.append(self.create_string())
+      elif self.current_char == "`":
+        tokens.append(self.python_code())
       elif self.current_char == '+':
         tokens.append(Token(Tokens['PLUS'], pos_start=self.pos))
         self.advance()
@@ -218,6 +220,18 @@ class Lexer:
     self.advance()
     return Token(Tokens['STRING'], string, pos_start, self.pos)
 
+  def python_code(self):
+    python_string = ''
+    pos_start = self.pos.copy()
+    self.advance()
+
+    while self.current_char != None and self.current_char != "`":
+      python_string += self.current_char
+      self.advance()
+
+    self.advance()
+    return Token(Tokens['PYTHON_CODE'], python_string, pos_start, self.pos)
+  
   def create_identifier(self):
     id_str = ''
     pos_start = self.pos.copy()
@@ -252,6 +266,12 @@ class Lexer:
         id_str = "is_list"
       if id_str in BuiltIns['is_function']:
         id_str = "is_function"
+      if id_str in BuiltIns['to_str']:
+        id_str = "to_str"
+      if id_str in BuiltIns['to_num']:
+        id_str = "to_num"
+      if id_str in BuiltIns['type']:
+        id_str = "type"
       if id_str in BuiltIns['append']:
         id_str = "append"
       if id_str in BuiltIns['pop']:
@@ -260,8 +280,8 @@ class Lexer:
         id_str = "extend"
       if id_str in BuiltIns['len']:
         id_str = "len"
-      if id_str in BuiltIns['run']:
-        id_str = "run"
+      if id_str in BuiltIns['import']:
+        id_str = "import"
 
     return Token(tok_type, id_str, pos_start, self.pos)
 
