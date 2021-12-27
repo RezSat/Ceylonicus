@@ -26,9 +26,3 @@ Simple, Just use the executable from the latest release. (Works only on Windows 
 ```
 
 Learn more about [Brython](https://brython.info/) ...
-
-Thank you
-=========
-
-- [BrowserStack](http://www.browserstack.com) for providing an access
-to their online testing environment.
