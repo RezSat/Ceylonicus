@@ -4,8 +4,9 @@
   </a>
 </p>
 
-## Note: This is just a pet project that I work on for fun and learning purposes, so don't except high level results from this.
+## Note: This is just a pet project that I work on for fun and learning purposes, so don't except high level results from this. This project also uses the **Iskoola Pota** so download it and install it first so the unicode errors won't happen.
 
+### Download Iskoola Pota here:[Iskoola Pota](https://sinhala-fonts.org/fonts/iskoola-pota-regular)
 ## How to Run
 
 ### Method - 1
