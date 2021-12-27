@@ -1,9 +1,0 @@
-﻿function say_hello(name)
-	write("Hello, "+name)
-end
-ශ්‍රීතය ආයුබෝවන්_කියන්න(නාමය)
-	ලියන්න("ආයුබෝවන්, "+නාමය)
-අවසන්
-
-say_hello("yehan")
-ආයුබෝවන්_කියන්න("yehan")
