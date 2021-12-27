@@ -4,6 +4,8 @@
   </a>
 </p>
 
+## Note: This is just a pet project that I work on for fun and learning purposes, so don't except high level results from this.
+
 ## How to Run
 
 ## Method - 1
