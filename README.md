@@ -4,7 +4,7 @@
   </a>
 </p>
 
-## Note: This is just a pet project that I work on for fun and learning purposes, so don't except high level results from this. This project also uses the **Iskoola Pota** font, so download it and install it first so the unicode errors won't happen.
+## Note: This is just a pet project that I work on for fun and learning purposes.
 
 ### Download Iskoola Pota font from here: [Iskoola Pota](https://freefontsdownload.net/free-iskpotab-font-145700.htm)
 
