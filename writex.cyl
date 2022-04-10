@@ -3,4 +3,4 @@ write("THIS IS FROM ENGLISH")
 
 function hello(a) -> write("Hello "+a)
 
-function add(a,b) -> a + b 
+function add(a,b) -> a + b

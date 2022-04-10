@@ -58,14 +58,14 @@ KEYWORDS = [
 
 #Sinhala
   'විචල්ය', # variable
-  'විචල්‍ය​',
+  'විචල්‍ය',
   'සහ', # and
   'හෝ', # or
   'නොමැත', # not
   'නොව', # not
   'නැත', # not
   'නොවේ', # not
-  'නොවන​', # not
+  'නොවන', # not
   'ශ්‍රීතය', #function
   'කාර්යය', # function
   'නම්', #like-if
@@ -80,9 +80,9 @@ KEYWORDS = [
   "දක්වා", # |
   "පියවර",# දක්වා පියවර for i=0 to 10 step -2 then (it's like the step)
   "තෙක්", # like-then but for (for-loop)
-  "සිට​", #like to
-  "අතර​",# while
-  "අතරතුර​", # while
+  "සිට", #like to
+  "අතර",# while
+  "අතරතුර", # while
   "නවත්වන්න", # break
   "දෙන්න", #return
   "දිගටම",
@@ -106,7 +106,7 @@ BuiltIns = {
 	"to_str": ["අක්ෂර_බවට_පරිවර්තනය_කරන්න"],
 	"to_num":["අංක_බවට_පරිවර්තනය_කරන්න"],
 	"type": ["වර්ගය"],
-	"append":['අගට​_එකතු_කරන්න'],
+	"append":['අගට_එකතු_කරන්න'],
 	"pop":['පොප්'], 
 	"extend":['දිගු_කරන්න'],
 	"len":['දිග'], 

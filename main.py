@@ -38,6 +38,8 @@ if __name__ == '__main__':
       text = text.replace(u'﻿', "")
     if u'﻿' in text:
       text = text.replace(u'﻿', "")
+    if u'​' in text:
+      text = text.replace(u'​', "")
 
     result, error = Execute('<stdin>', text)
 

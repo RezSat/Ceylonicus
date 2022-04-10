@@ -1,5 +1,5 @@
 
-# English
+# English #
 
 var x = 10
 var text = "Hello, World 123"
@@ -16,7 +16,7 @@ write(div)
 write(mul)
 write(pow)
 
-# Sinhala
+# Sinhala #
 
 var අංකයක් = 10
 var වචන = "Hello, World 123"

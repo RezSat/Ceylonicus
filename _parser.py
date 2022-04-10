@@ -202,7 +202,7 @@ class Parser:
 
   def expr(self):
     res = ParseResult()
-    if self.current_tok.matches(Tokens['KEYWORD'], 'var') or self.current_tok.matches(Tokens['KEYWORD'], 'විචල්ය') or self.current_tok.matches(Tokens['KEYWORD'], 'විචල්‍ය​'):
+    if self.current_tok.matches(Tokens['KEYWORD'], 'var') or self.current_tok.matches(Tokens['KEYWORD'], 'විචල්ය') or self.current_tok.matches(Tokens['KEYWORD'], 'විචල්‍ය'):
       res.register_advancement()
       self.advance()
 
@@ -246,7 +246,7 @@ class Parser:
   def comp_expr(self):
     res = ParseResult()
 
-    if self.current_tok.matches(Tokens['KEYWORD'], 'not') or self.current_tok.matches(Tokens['KEYWORD'], 'නොමැත') or self.current_tok.matches(Tokens['KEYWORD'], 'නොව') or self.current_tok.matches(Tokens['KEYWORD'], 'නැත') or self.current_tok.matches(Tokens['KEYWORD'], 'නොවේ') or self.current_tok.matches(Tokens['KEYWORD'], 'නොවන​'):
+    if self.current_tok.matches(Tokens['KEYWORD'], 'not') or self.current_tok.matches(Tokens['KEYWORD'], 'නොමැත') or self.current_tok.matches(Tokens['KEYWORD'], 'නොව') or self.current_tok.matches(Tokens['KEYWORD'], 'නැත') or self.current_tok.matches(Tokens['KEYWORD'], 'නොවේ') or self.current_tok.matches(Tokens['KEYWORD'], 'නොවන'):
       op_tok = self.current_tok
       res.register_advancement()
       self.advance()
@@ -546,7 +546,7 @@ class Parser:
         self.advance()
         self.expr()
         if (self.current_tok.matches(Tokens['KEYWORD'], 'to') or
-            self.current_tok.matches(Tokens['KEYWORD'], 'සිට​')):
+            self.current_tok.matches(Tokens['KEYWORD'], 'සිට')):
             while not self.current_tok.matches(Tokens['KEYWORD'], 'මෙහි'):
               self.reverse()
             return 'for'
@@ -560,7 +560,7 @@ class Parser:
 
     condition = res.register(self.expr())
 
-    if (self.current_tok.matches(Tokens['KEYWORD'], 'අතරතුර​') or
+    if (self.current_tok.matches(Tokens['KEYWORD'], 'අතරතුර') or
         self.current_tok.matches(Tokens['KEYWORD'], 'අතර') or
         self.current_tok.matches(Tokens['KEYWORD'], 'do')):
       while not self.current_tok.matches(Tokens['KEYWORD'], 'මෙහි'):
@@ -649,10 +649,10 @@ class Parser:
     if res.error: return res
 
     if not (self.current_tok.matches(Tokens['KEYWORD'], 'to') or
-            self.current_tok.matches(Tokens['KEYWORD'], 'සිට​')):
+            self.current_tok.matches(Tokens['KEYWORD'], 'සිට')):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'to' or 'සිට​'"
+        f"Expected 'to' or 'සිට'"
       ))
     
     res.register_advancement()
@@ -723,8 +723,8 @@ class Parser:
     if res.error: return res
 
     if not (self.current_tok.matches(Tokens['KEYWORD'], 'do') or
-            self.current_tok.matches(Tokens['KEYWORD'], 'අතර​') or
-            self.current_tok.matches(Tokens['KEYWORD'], 'අතරතුර​')):
+            self.current_tok.matches(Tokens['KEYWORD'], 'අතර') or
+            self.current_tok.matches(Tokens['KEYWORD'], 'අතරතුර')):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
         f"Expected 'do'"

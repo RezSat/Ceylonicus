@@ -365,6 +365,17 @@ class BaseFunction(Value):
     if self.name == "input_int" and (len(args) < len(arg_names)):
       args.append(String(""))
 
+    if self.name == "write" and (len(args) > len(arg_names)):
+      full_arg = ""
+      for i in range(0, len(args)):
+        t = str(args[i])
+        if i != 0:
+          full_arg += f" {t}"
+
+      cargs = str(args[0]) + full_arg
+      args.clear()
+      args.append(String(cargs))
+
   def check_and_populate_args(self, arg_names, args, exec_ctx):
     res = RTResult()
     self.check_and_fix_default_args(arg_names, args)
@@ -435,17 +446,17 @@ class BuiltInFunction(BaseFunction):
 
   #####################################
 
-  def execute_print(self, exec_ctx):
+  def execute_write(self, exec_ctx):
     print(str(exec_ctx.symbol_table.get('value')).encode("utf8").decode(sys.stdout.encoding))
     f = open("_printed_",'a',encoding='utf8')
     print(str(exec_ctx.symbol_table.get('value')), file=f)
     f.close()
     return RTResult().success(Number.null)
-  execute_print.arg_names = ['value']
+  execute_write.arg_names = ['value']
   
-  def execute_print_ret(self, exec_ctx):
+  def execute_write_ret(self, exec_ctx):
     return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
-  execute_print_ret.arg_names = ['value']
+  execute_write_ret.arg_names = ['value']
   
   def execute_input(self, exec_ctx):
     text = input(exec_ctx.symbol_table.get('prompt'))
@@ -659,8 +670,8 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(Number.null)
   execute_import_.arg_names = ["fn"]
 
-BuiltInFunction.print       = BuiltInFunction("print")
-BuiltInFunction.print_ret   = BuiltInFunction("print_ret")
+BuiltInFunction.write       = BuiltInFunction("write")
+BuiltInFunction.write_ret   = BuiltInFunction("write_ret")
 BuiltInFunction.input       = BuiltInFunction("input")
 BuiltInFunction.input_int   = BuiltInFunction("input_int")
 BuiltInFunction.clear       = BuiltInFunction("clear")
@@ -806,7 +817,7 @@ class Interpreter:
 
     if node.op_tok.type == Tokens['MINUS']:
       number, error = number.multed_by(Number(-1))
-    elif node.op_tok.matches(Tokens['KEYWORD'], 'not') or node.op_tok.matches(Tokens['KEYWORD'], 'නොමැත') or node.op_tok.matches(Tokens['KEYWORD'], 'නොව') or node.op_tok.matches(Tokens['KEYWORD'], 'නැත') or node.op_tok.matches(Tokens['KEYWORD'], 'නොවේ') or node.op_tok.matches(Tokens['KEYWORD'], 'නොවන​'):
+    elif node.op_tok.matches(Tokens['KEYWORD'], 'not') or node.op_tok.matches(Tokens['KEYWORD'], 'නොමැත') or node.op_tok.matches(Tokens['KEYWORD'], 'නොව') or node.op_tok.matches(Tokens['KEYWORD'], 'නැත') or node.op_tok.matches(Tokens['KEYWORD'], 'නොවේ') or node.op_tok.matches(Tokens['KEYWORD'], 'නොව'):
       number, error = number.notted()
 
     if error:
@@ -959,8 +970,8 @@ global_symbol_table.set("null", Number.null)
 global_symbol_table.set("false", Number.false)
 global_symbol_table.set("true", Number.true)
 global_symbol_table.set("math_pi", Number.math_PI)
-global_symbol_table.set("write", BuiltInFunction.print)
-global_symbol_table.set("preturn", BuiltInFunction.print_ret)
+global_symbol_table.set("write", BuiltInFunction.write)
+global_symbol_table.set("preturn", BuiltInFunction.write_ret)
 global_symbol_table.set("input", BuiltInFunction.input)
 global_symbol_table.set("int_input", BuiltInFunction.input_int)
 global_symbol_table.set("clear", BuiltInFunction.clear)
