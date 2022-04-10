@@ -7,9 +7,13 @@
 ### Ceylonicus is the first written programming language that support syntaxes from sinhala language. Coded just for fun :) . 
 
 ```
-Please note that `Invalid Syntax: Token cannot appear after previous tokens` is a well-known error (even if the syntax is correct) and that occurs due to Sinhala Unicode errors, due to this specific reason I recommend just simply using the web ide to run the code : [Ceylonicus Web IDE](https://ceylonicus.vercel.app/) , until this error is fully fixed. 
+Please note that `Invalid Syntax: Token cannot appear after previous tokens` is a well-known error (even if the syntax is correct) and that occurs due to Sinhala Unicode errors, 
+due to this specific reason I recommend just simply using the web ide to run the code : 
 
-Download and Install Iskoola Pota font(only if you are running the IDE.py) from here: [Iskoola Pota](https://freefontsdownload.net/free-iskpotab-font-145700.htm)
+[Ceylonicus Web IDE](https://ceylonicus.vercel.app/),until this error is fully fixed. 
+
+Download and Install Iskoola Pota font(only if you are running the IDE.py) from here: 
+[Iskoola Pota](https://freefontsdownload.net/free-iskpotab-font-145700.htm)
 
 ```
 
