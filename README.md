@@ -1,6 +1,6 @@
 # Ceylonicus-Programming-Language
 <p align="center">
-    <img width="1200px" src="https://github.com/RezSat/Ceylonicus/blob/gh-pages/assets/images/logo-1200x268.png"><br/>
+    <img width="1200px" src="https://github.com/RezSat/Ceylonicus/blob/gh-pages/css/logo-1200x268.png?raw=true"><br/>
   </a>
 </p>
 
