@@ -11,8 +11,8 @@
 ## How to Run
 
 ### Method - 1
-Clone this repo and run `IDE.py`, which is a simple GUI to run the Ceylonicus Source Code. Make sure you have python and pyqt5 installed.
-or use `main.py`. Command when using `main.py` is `python main.py filename.cyl`. (se the appropriate python command according to your os)
+Clone this repo and run `IDE.py`, which is a simple GUI to run the Ceylonicus Source Code. Make sure you have python and pyqt5 installed,
+or use `main.py`. Command when using `main.py` is `python main.py filename.cyl`. (use the appropriate python command according to your os)
 
 ### Method - 2
 Simple, Just use the executable from the latest release. (Works only on Windows Platform)
