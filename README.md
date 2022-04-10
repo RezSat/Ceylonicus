@@ -4,7 +4,7 @@
   </a>
 </p>
 
-## Note: This is just a pet project that I work on for fun and learning purposes.
+### Ceylonicus is the first written programming language that support syntaxes from sinhala language. Coded just for fun :) .
 
 ### Download Iskoola Pota font from here: [Iskoola Pota](https://freefontsdownload.net/free-iskpotab-font-145700.htm)
 
@@ -19,14 +19,8 @@ Simple, Just use the executable from the latest release. (Works only on Windows 
 command : ``` {excutable_path} {filename_with_extension}```
 command example: ``` ceylonicus.exe test.cyl ```
 
-## Examples can be Found inside the examples folder.
-
-### I'm Working On:
-```
-[+] A Brython implementation, so this can be run directly on the browser.
-[+] Make a Good IDE UI with more functions
-[+] Make it work on Linux/Mac without python (as an direct executable).
-[+] A Good Documentation for both contributions & learning.
-```
-
+### Method - 3
+The Newest method, just go to the url and run it on the browser (this is possible thanks to brython.)
 Learn more about [Brython](https://brython.info/) ...
+
+## Examples can be Found inside the examples folder.
