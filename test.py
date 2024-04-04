@@ -1,9 +1,15 @@
-from lexer import Lexer
-from _parser import Parser
-from interpreter import Interpreter, Context, global_symbol_table
-
+try:
+  from lexer import Lexer
+  from _parser import Parser
+  from interpreter import Interpreter, Context, global_symbol_table
+except:
+  from .lexer import Lexer
+  from ._parser import Parser
+  from .interpreter import Interpreter, Context, global_symbol_table
 
 def run(fn, text):
+  f = open('_printed_', 'w')
+  f.close()
   # Generate tokens
   lexer = Lexer(fn, text)
   tokens, error = lexer.create_tokens()
@@ -23,13 +29,10 @@ def run(fn, text):
   return result.value, result.error
 
 
-f = open('_printed_', 'w')
-f.close()
-
 text = """
 #paste your code here and run this file.
 
-ආනයනය_කරන්න("examples/write.cord")
+ආනයනය_කරන්න("examples/write.cyl")
 var x = "100"
 write(වර්ගය(x))
 write("කරන්න")
