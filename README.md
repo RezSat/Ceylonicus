@@ -5,7 +5,9 @@
 </p>
 
 ### Ceylonicus is the first written programming language that support syntax from sinhala language. (It's more of a prototype/model language) 
-Ceylonicus Web IDE](https://ceylonicus.vercel.app/)
+[Ceylonicus Web IDE](https://ceylonicus.vercel.app/)
+
+The Ceylonicus programming language draws its name from [Bungarus ceylonicus](https://en.wikipedia.org/wiki/Bungarus_ceylonicus), a species of venomous elapid snake endemic to the island of Sri Lanka. This name also subtly acknowledges that the language was prototyped using Python.
 
 ## How to Run
 
