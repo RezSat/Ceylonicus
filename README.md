@@ -4,26 +4,87 @@
   </a>
 </p>
 
-### Ceylonicus is the first written programming language that support syntax from sinhala language. (It's more of a prototype/model language) 
-[Ceylonicus Web IDE](https://ceylonicus.vercel.app/)
+# The First Sinhala Programming Language
 
-The Ceylonicus programming language draws its name from [Bungarus ceylonicus](https://en.wikipedia.org/wiki/Bungarus_ceylonicus), a species of venomous elapid snake endemic to the island of Sri Lanka. This name also subtly acknowledges that the language was prototyped using Python.
+**Ceylonicus** is the **first programming language to support Sinhala language syntax**, while also supporting English syntax seamlessly. This aims to make programming more accessible to Sinhala speakers. This project is a **prototype/model language**
 
-## How to Run
+## Sinhala & English in unified codebase
 
-### Method - 1
-Clone this repo and run `IDE.py`, which is a simple GUI to run the Ceylonicus Source Code. Make sure you have python and pyqt5 installed,
-or use `main.py`. Command when using `main.py` is `python main.py filename.cyl`. (use the appropriate python command according to your os)
+Ceylonicus allows you to write both **Sinhala and English code** in the same source file. This flexibility makes it easy for users transitioning from English-based programming or mixing native terms with global standards.
 
-### Method - 2
-Simple, Just use the executable from the latest release. (Works only on Windows Platform)
-command : ``` {excutable_path} {filename_with_extension}```
-command example: ``` ceylonicus.exe test.cyl ```
+**Example:**
 
-### Method - 3
-The Newest method, just go to [Ceylonicus Web IDE](https://ceylonicus.vercel.app/) and run it on the browser (this is possible thanks to brython.)
-Learn more about [Brython](https://brython.info/) ...
+```
+විචල්‍ය අංකයක් = 10
+write(අංකයක්)
+```
 
-## Examples can be Found inside the examples folder.
+This will output:
+`10`
 
-Working on a Compiler (LLVM) and a Desktop IDE.
+You can freely combine Sinhala identifiers and English functions or vice versa. There's no syntax conflict when mixing the two.
+## Naming Inspiration
+
+The name **Ceylonicus** comes from [_Bungarus ceylonicus_](https://en.wikipedia.org/wiki/Bungarus_ceylonicus), is a species of [venomous](https://en.wikipedia.org/wiki/Venomous "Venomous") [elapid](https://en.wikipedia.org/wiki/Elapidae "Elapidae") snake which is endemic to Sri Lanka. It also acknowledges that the language was **prototyped using Python**.
+
+Experience Ceylonicus instantly: [**Launch Ceylonicus Web IDE**](https://ceylonicus.vercel.app/)
+
+## Get Started with Ceylonicus
+
+Ceylonicus offers multiple  ways to run your code. Choose the method that best suits your workflow:
+
+### Method 1: Local Setup (Python & PyQt5)
+
+For a powerful local development experience with a graphical user interface:
+
+1. **Clone this repository:**
+
+    ```
+    git clone https://github.com/RezSat/Ceylonicus.git
+    cd Ceylonicus
+    ```
+    
+2. **Ensure Python and PyQt5 are installed.**
+3. **Run the GUI IDE:**
+
+    ```
+    python IDE.py
+    ```
+    
+    Alternatively, for command-line execution:
+
+    ```
+    python main.py your_file.cyl
+    ```
+    
+    _(Use the appropriate Python command for your operating system.)_
+
+### Method 2: Windows Executable
+
+The simplest way to get started on Windows:
+
+1. **Download the latest executable** from the [releases page](https://www.google.com/search?q=https://github.com/RezSat/Ceylonicus/releases).
+2. **Execute your Ceylonicus file** directly from your command prompt:
+    
+    ```
+    {path_to_executable}\ceylonicus.exe {your_file.cyl}
+    ```
+    
+    **Example:**
+    
+    ```
+    ceylonicus.exe test.cyl
+    ```
+    
+
+### Method 3: Ceylonicus Web IDE (Browser-Based)
+
+Code and run Ceylonicus directly in your web browser, no installation required!
+
+- Visit the [**Ceylonicus Web IDE**](https://ceylonicus.vercel.app/) This is made possible by [Brython](https://brython.info/), enabling Python to run directly in the browser.
+
+---
+
+## Explore Examples
+
+Dive into language of Ceylonicus. You can find various code examples demonstrating the language's features within the `examples` folder, or if you use the web ide you can also find them under Examples tab.
