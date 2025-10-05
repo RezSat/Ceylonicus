@@ -8,6 +8,8 @@
 
 **Ceylonicus** is the **first programming language to support Sinhala language syntax**, while also supporting English syntax seamlessly. This aims to make programming more accessible to Sinhala speakers. This project is a **prototype/model language**
 
+- Author: Yehan Wasura
+
 ## Sinhala & English in unified codebase
 
 Ceylonicus allows you to write both **Sinhala and English code** in the same source file. This flexibility makes it easy for users transitioning from English-based programming or mixing native terms with global standards.
